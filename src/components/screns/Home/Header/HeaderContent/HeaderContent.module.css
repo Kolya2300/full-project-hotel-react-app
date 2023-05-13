@@ -1,0 +1,38 @@
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(36, 171, 112, 0.04);
+    border-radius: 50px 50px 0 0;
+}
+
+.find__title {
+    width: 630px;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 80px;
+    color: #000000;
+    padding: 88px 40px 24px 58px;
+}
+
+.find__text {
+    padding: 24px 65px 56px 58px;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+.find__video {
+    display: flex;
+    align-items: center;
+    padding: 0 53px;
+}
+
+.video__img {
+    padding: 0 16px 0 0;
+}
+
+.video__text {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #222222;
+}

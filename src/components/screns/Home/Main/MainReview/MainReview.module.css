@@ -1,0 +1,48 @@
+
+.review {
+    margin-bottom: 200px;
+}
+
+.review__box_text {
+    margin: 68px 132px 57px 110px;
+}
+
+.review__box_text::after {
+    content: url("/src/image/img/quot2.png");
+}
+
+.review__box_text::before {
+    content: url("/src/image/img/quot1.png");;
+}
+
+.review__box_user,
+.review__box_user_profession {
+    margin-left: 110px;
+    padding-bottom: 20px;
+}
+
+.review__box__user {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    color: #222222;
+    margin-bottom: 12px;
+}
+
+.review__slider {
+    display: flex;
+    background-color: #fafafa;
+}
+
+.review__slider_item {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.slick_slider{
+    display: flex;
+}
+.slick-prev,
+.slick-next{
+   background-color: black !important;
+}

@@ -1,0 +1,103 @@
+.popular {
+    margin-bottom: 150px;
+}
+.container {
+    max-width: 1300px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+.popular__title {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    color: #000000;
+    margin-bottom: 20px;
+    margin-top: 120px;
+}
+
+.popular__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 45px;
+}
+
+.popular__box_all {
+    display: inline-block;
+    background: rgba(36, 171, 112, 0.1);
+    border-radius: 280px;
+    padding: 6px 25px;
+}
+
+.hotel__card_item {
+    margin-right: 20px;
+}
+
+.hotel__card_item:last-child {
+    margin-right: 0;
+}
+
+.hotel__card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fafafa;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hotel__starts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 38px;
+}
+
+
+
+
+/*card detail*/
+.hotel__card_location {
+    margin: 24px 0 15px 16px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #24AB70;
+}
+
+.hotel__card_name_hotel {
+    margin: 0 57px 25px 16px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    color: #222222;
+}
+
+.hotel__card_price,
+.hotel__starts_review {
+    line-height: 18px;
+    color: #222222;
+}
+.hotel__card_price{
+    margin-left: 26px;
+}
+
+/*card detail end*/
+/*down card hotel - price, review, stars*/
+
+
+.hotel__card_price {
+    margin-left: 26px;
+}
+
+.hotel__card_img{
+    width: 500px;
+}
+.title__hotel{
+    display: block ;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}

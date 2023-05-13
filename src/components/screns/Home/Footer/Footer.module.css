@@ -1,0 +1,52 @@
+.footer{
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.container{
+    max-width: 1300px;
+    padding: 0 10px;
+}
+.company__detail_text {
+    line-height: 24px;
+    padding: 5px;
+    max-width: 300px;
+}
+
+.company__detail_box {
+    padding-top: 64px;
+    margin-bottom: 32px;
+}
+
+
+.help__link_list_item,
+.home__link_list_item,
+.get__app_list_item {
+    line-height: 24px;
+    color: #222222;
+    margin-bottom: 16px;
+}
+
+.help__link_list_item:first-child,
+.home__link_list_item:first-child,
+.get__app_list_item:first-child {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 24px;
+}
+
+/*social media*/
+
+.company__detail_social {
+    padding: 0 5px;
+    display: flex;
+}
+
+.company__detail_social > a {
+    margin-right: 32px;
+    cursor: pointer;
+}

@@ -1,0 +1,80 @@
+.iframe{
+    border:0;
+}
+.map__inner {
+    position: relative;
+    margin-bottom: 200px;
+}
+.map__contact {
+     display: flex;
+     background: #FFFFFF;
+     border-radius: 16px;
+     position: absolute;
+     top: 460px;
+     max-width: 1194px;
+     right: 43px;
+     left: 43px;
+     bottom: 43px;
+ }
+
+.map__contact_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 60px;
+}
+
+label {
+    position: relative;
+
+}
+
+.map__contact_enter {
+    border: none;
+    width: 460px;
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 50px;
+    background-color: #fafafa;
+}
+
+input[type="text"]::placeholder {
+    font-size: 14px;
+}
+
+.map__contact_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    padding: 0 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+
+    background: #24AB70;
+    border-radius: 50px;
+}
+
+.map__contact-btn:hover {
+    transition: .8s;
+    background-color: #6c6c6c;
+}
+
+.contact_title {
+    margin: 44px 0 16px 60px;
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.contact_text {
+    margin: 0 110px 43px 60px;
+}
+.map{
+    margin-bottom: 120px;
+}
