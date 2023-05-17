@@ -6,90 +6,62 @@ import checkOut from "../../../../../../image/img/calendar2.png";
 import person from "../../../../../../image/img/person1.png";
 import searchButton from "../../../../../../image/img/search.png";
 import { db } from "../../../../../../firebase";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore/lite";
 
 const SearchHotel = () => {
-  const [value, setValue] = useState("");
+  const [location, setLocation] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+  const [adultCount, setAdultCount] = useState(1);
   const [hotels, setHotels] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedDate1, setSelectedDate1] = useState("");
-  const [adultPeople, setAdultPeople] = useState("");
-  const [countRooms, setCountRooms] = useState("");
-  const [filteredHotels, setFilteredHotels] = useState([]);
 
   useEffect(() => {
-    const getHotels = async () => {
-      const querySnapshot = await getDocs(collection(db, "hotels"));
+    const fetchHotels = async () => {
+      const dbRef = collection(db, "hotels");
+      const q = query(dbRef, where("hotelCity", "==", location.toLowerCase()));
+      const querySnapshot = await getDocs(q);
       const hotelsData = querySnapshot.docs.map((doc) => doc.data());
       setHotels(hotelsData);
     };
 
-    getHotels();
+    fetchHotels();
+  }, [location]);
 
-    const filteredHotels = hotels.filter((hotel) => {
-      const lowercaseSearchTerm = value.toLowerCase();
-      const lowercaseCity = hotel.hotelCity.toLowerCase();
-      const lowercaseName = hotel.hotelName.toLowerCase();
-      const lowercaseLocation = hotel.hotelLocation.toLowerCase();
-
-      return (
-        lowercaseCity.includes(lowercaseSearchTerm) ||
-        lowercaseName.includes(lowercaseSearchTerm) ||
-        lowercaseLocation.includes(lowercaseSearchTerm)
-      );
-    });
-
-    setFilteredHotels(filteredHotels);
-  }, [value, hotels]);
-
-  const onChange = (event) => {
-    setValue(event.target.value);
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
   };
 
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
+  const handleCheckInDateChange = (event) => {
+    setCheckInDate(event.target.value);
   };
 
-  const handleDate1Change = (event) => {
-    setSelectedDate1(event.target.value);
+  const handleCheckOutDateChange = (event) => {
+    setCheckOutDate(event.target.value);
   };
 
-  const calculateDaysDifference = () => {
-    const startDate = new Date(selectedDate);
-    const endDate = new Date(selectedDate1);
-    const differenceMs = Math.abs(endDate - startDate);
-    const differenceDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
-    return differenceDays;
+  const handleAdultCountChange = (event) => {
+    setAdultCount(event.target.value);
   };
 
-  const handleAdultPeople = (event) => {
-    setAdultPeople(event.target.value);
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Fetch hotels based on the entered data and update the hotels state
+    const fetchHotels = async () => {
+      const dbRef = collection(db, "hotels");
+      const q = query(dbRef, where("hotelCity", "==", location.toLowerCase()));
+      const querySnapshot = await getDocs(q);
+      const hotelsData = querySnapshot.docs.map((doc) => doc.data());
+      setHotels(hotelsData);
+    };
 
-  const handleCountRooms = (event) => {
-    setCountRooms(event.target.value);
-  };
-
-  const onSearch = () => {
-    const filteredHotels = hotels.filter((hotel) => {
-      const lowercaseCity = hotel.hotelCity.toLowerCase();
-      const lowercaseName = hotel.hotelName.toLowerCase();
-      const lowercaseLocation = hotel.hotelLocation.toLowerCase();
-      return (
-        lowercaseCity.includes(value.toLowerCase()) ||
-        lowercaseName.includes(value.toLowerCase()) ||
-        lowercaseLocation.includes(value.toLowerCase())
-      );
-    });
-
-    setFilteredHotels(filteredHotels);
+    fetchHotels();
   };
 
   return (
     <div>
       <div className={styles.search__inner}>
         <div className={styles.search}>
-          <nav className={styles.search__menu}>
+          <form className={styles.search__menu} onSubmit={handleSubmit}>
             <ul className={styles.search__list}>
               <li className={styles.search__list_item}>
                 <div className={styles.search__list_img}>
@@ -102,8 +74,8 @@ const SearchHotel = () => {
                 </div>
                 <input
                   type="text"
-                  value={value}
-                  onChange={onChange}
+                  value={location}
+                  onChange={handleLocationChange}
                   className={styles.locationInput}
                   placeholder="Enter location"
                   style={{ width: "150px", marginLeft: "25px" }}
@@ -111,7 +83,7 @@ const SearchHotel = () => {
               </li>
               <li className={styles.search__list_item}>
                 <div className={styles.search__list_img}>
-                <img
+                  <img
                     src={checkIn}
                     alt=""
                     className={styles.search__list_img}
@@ -122,13 +94,13 @@ const SearchHotel = () => {
                 </div>
                 <input
                   type="date"
-                  value={selectedDate}
-                  onChange={handleDateChange}
+                  value={checkInDate}
+                  onChange={handleCheckInDateChange}
                 />
               </li>
               <li className={styles.search__list_item}>
                 <div className={styles.search__list_img}>
-                <img
+                  <img
                     src={checkOut}
                     alt=""
                     className={styles.search__list_img}
@@ -139,13 +111,13 @@ const SearchHotel = () => {
                 </div>
                 <input
                   type="date"
-                  value={selectedDate1}
-                  onChange={handleDate1Change}
+                  value={checkOutDate}
+                  onChange={handleCheckOutDateChange}
                 />
               </li>
               <li className={styles.search__list_item}>
                 <div className={styles.search__list_img}>
-                <img
+                  <img
                     src={person}
                     alt=""
                     className={styles.search__list_img}
@@ -156,15 +128,27 @@ const SearchHotel = () => {
                 </div>
                 <input
                   type="number"
-                  value={adultPeople ? adultPeople : 1}
-                  onChange={handleAdultPeople}
+                  value={adultCount}
+                  onChange={handleAdultCountChange}
                   style={{ width: "30px" }}
                 />
               </li>
             </ul>
-            <button className={styles.search__menu_btn} onClick={onSearch}>Search</button>
-          </nav>
+            <button className={styles.search__menu_btn} type="submit">
+              Search
+            </button>
+          </form>
         </div>
+      </div>
+      {/* Render hotel results */}
+      <div>
+        {hotels.map((hotel) => (
+          <div key={hotel.id}>
+            <h3>{hotel.hotelName}</h3>
+            <p>{hotel.hotelCity}</p>
+            {/* //TODO: add other props about hotel  */}
+          </div>
+        ))}
       </div>
     </div>
   );
